@@ -5,16 +5,16 @@
   @include utils.font-sizer(1.4, 1.7, 76.8, 150, 1.8);
   position: relative;
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 1.25rem;
   transition: all 0.3s ease;
   border: none;
   background-color: $secondaryColor;
   color: $whiteColor;
   font-family: $primaryFont;
-  font-weight: bold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.35;
+  line-height: 1.3;
   letter-spacing: normal;
   text-align: center;
   text-transform: uppercase;
@@ -47,10 +47,13 @@
 
 .btn-two {
   @extend .btn;
-  background-color: $shadowColor;
+  background-color: $whiteColor;
+  border: 0.1rem solid $blackColor;
+  color: $blackColor;
 
   &:hover {
-    background-color: $secondaryColor;
+    background-color: $blackColor;
+    color: $whiteColor;
   }
 }
 

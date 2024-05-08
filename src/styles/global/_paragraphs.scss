@@ -11,11 +11,16 @@
 }
 
 .p-one {
-  @include utils.font-sizer(1.6, 1.7, 76.8, 150, 1.7);
+  @include utils.font-sizer(2, 2.8, 76.8, 150, 2);
   @extend .paragraph-all;
 }
 
 .p-two {
-  @include utils.font-sizer(1.8, 2, 76.8, 150, 2);
+  @include utils.font-sizer(1.8, 2.3, 76.8, 150, 1.8);
+  @extend .paragraph-all;
+}
+
+.p-three {
+  @include utils.font-sizer(1.6, 2, 76.8, 150, 1.6);
   @extend .paragraph-all;
 }
