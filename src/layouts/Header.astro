@@ -1,7 +1,58 @@
 ---
+import MainNav from '../components/Navigation/MainNav/MainNav.jsx';
+import MainLogo from '../components/Logo/MainLogo.astro';
+import Wrapper from '../components/shared/Wrapper.astro';
+import "./header.scss";
 
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query headerQuery {
+            menu(id: "Main Menu", idType: NAME) {
+                menuItems {
+                    nodes {
+                        label
+                        uri
+                        parentId
+                        childItems {
+                            nodes {
+                                label
+                                uri
+                            }
+                        }
+                    }
+                }
+            }
+
+            logoOptions {
+                logoOptions {
+                    logoOptions {
+                        mainLogo {
+                        altText
+                        sourceUrl
+                        }
+                    }
+                }
+            }
+        }
+    `,
+  }),
+});
+const { data: {menu: {menuItems}, logoOptions:{logoOptions: {logoOptions}}} } = await response.json();
 ---
 
-<header>
-    <h1>Header</h1>
+<header class="header">
+    <Wrapper classes="header-wrap">
+        <div class="header-logo">
+            <MainLogo data={logoOptions} />
+        </div>
+        <div class="header-navigation">
+            <MainNav client:only="react" menuItems={menuItems.nodes} pathname={Astro.url.pathname} />
+        </div>
+    </Wrapper>
 </header>

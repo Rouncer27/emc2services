@@ -1,0 +1,71 @@
+@use "../../../styles/global/paragraphs";
+@use "../../../styles/abstracts/" as *;
+
+.main-nav {
+  width: 100%;
+
+  nav {
+    .main-nav-top-list {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+
+      li {
+        position: relative;
+        margin: 1rem 2rem;
+
+        a {
+          @extend .p-three;
+          color: $whiteColor;
+          text-transform: uppercase;
+
+          &:hover {
+            color: $secondaryColor;
+          }
+        }
+
+        a.main-nav-current {
+          color: $secondaryColor;
+
+          &:hover {
+            cursor: default;
+          }
+        }
+
+        a.main-nav-btn-two {
+          background-color: transparent;
+          border-color: $whiteColor;
+
+          &:hover {
+            color: $blackColor;
+            background-color: $whiteColor;
+          }
+        }
+
+        .main-nav-sub-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: $secondaryColor;
+          transition: all 0.3s ease-in-out;
+          opacity: 0;
+          visibility: hidden;
+
+          &.active {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          li {
+            a {
+              &:hover {
+                color: $blackColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

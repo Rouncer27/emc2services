@@ -1,0 +1,22 @@
+@use "../styles/abstracts/" as *;
+
+.header {
+  background: linear-gradient(
+    to bottom,
+    $secondaryColor 0rem,
+    $secondaryColor 3.5rem,
+    $shadowColor 3.5rem,
+    $shadowColor 100%
+  );
+  padding-top: 1rem;
+
+  &-logo {
+    width: calc(10%);
+    max-width: 10rem;
+  }
+
+  &-navigation {
+    width: calc(90%);
+    align-self: flex-end;
+  }
+}
