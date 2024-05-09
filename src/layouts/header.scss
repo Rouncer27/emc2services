@@ -11,12 +11,27 @@
   padding-top: 1rem;
 
   &-logo {
-    width: calc(10%);
+    width: calc(100%);
     max-width: 10rem;
+
+    @media (min-width: 1081px) {
+      width: calc(10%);
+      max-width: 10rem;
+    }
   }
 
   &-navigation {
-    width: calc(90%);
-    align-self: flex-end;
+    display: none;
+
+    @media (min-width: 769px) {
+      display: block;
+      width: calc(100%);
+      align-self: center;
+    }
+
+    @media (min-width: 1081px) {
+      width: calc(90%);
+      align-self: flex-end;
+    }
   }
 }
