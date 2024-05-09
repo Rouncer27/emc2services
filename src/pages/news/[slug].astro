@@ -23,10 +23,9 @@ export async function getStaticPaths() {
   });
 
   const { data } = await response.json();
-
-  return data.posts.nodes.map((post) => {
+  return data?.posts?.nodes?.map((post) => {
     return {
-      params: { slug: `${post.slug}` },
+      params: { slug: `${post?.slug}` },
     };
   });
 }
@@ -41,10 +40,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query postQuery($id: ID!) {
         post(idType: SLUG, id: $id) {
             title
-          }
         }
-
-    }
+    }    
     `,
     variables: {
       id: Astro.params["slug"],
@@ -52,11 +49,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   }),
 });
 
-const {
-  data: { post },
-} = await response.json();
-
-
+const {data: { post }} = await response.json();
 ---
 
 <Layout >
