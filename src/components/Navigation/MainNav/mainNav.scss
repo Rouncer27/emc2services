@@ -1,4 +1,5 @@
 @use "../../../styles/global/paragraphs";
+@use "../../../styles/global/buttons";
 @use "../../../styles/abstracts/" as *;
 
 .main-nav {
@@ -33,16 +34,6 @@
           }
         }
 
-        a.main-nav-btn-two {
-          background-color: transparent;
-          border-color: $whiteColor;
-
-          &:hover {
-            color: $blackColor;
-            background-color: $whiteColor;
-          }
-        }
-
         .main-nav-sub-menu {
           position: absolute;
           top: 100%;
@@ -52,7 +43,7 @@
           opacity: 0;
           visibility: hidden;
 
-          &.active {
+          &.main-nav-sub-menu-active {
             opacity: 1;
             visibility: visible;
           }
@@ -63,6 +54,26 @@
                 color: $blackColor;
               }
             }
+          }
+        }
+      }
+
+      li.main-nav-top-list-item-cta-one {
+        a {
+          @extend .btn-one;
+        }
+      }
+
+      li.main-nav-top-list-item-cta-two {
+        a {
+          @extend .btn-two;
+          border-color: $whiteColor;
+          background-color: transparent;
+          color: $whiteColor;
+
+          &:hover {
+            color: $blackColor;
+            background-color: $whiteColor;
           }
         }
       }

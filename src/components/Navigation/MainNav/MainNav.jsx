@@ -2,7 +2,6 @@ import MainNavItem from "./MainNavItem.jsx";
 import "./mainNav.scss";
 
 const MainNav = (props) => {
-  console.log("props", props);
   return (
     <div className="main-nav">
       <nav>
@@ -14,24 +13,18 @@ const MainNav = (props) => {
                 <MainNavItem
                   currentPage={currentPage}
                   item={item}
-                  index={index}
+                  key={index}
                 />
               );
             } else {
               return null;
             }
           })}
-          <li>
+          <li className="main-nav-top-list-item main-nav-top-list-item-cta-one">
             <a href="https://members.emc2services.ca/">Book Now</a>
           </li>
-          <li>
-            <a
-              className="main-nav-btn-two"
-              btnstyle="two"
-              href="https://members.emc2services.ca/login/true"
-            >
-              Login
-            </a>
+          <li className="main-nav-top-list-item main-nav-top-list-item-cta-two">
+            <a href="https://members.emc2services.ca/login/true">Login</a>
           </li>
         </ul>
       </nav>

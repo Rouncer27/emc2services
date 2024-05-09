@@ -1,18 +1,35 @@
-import React from "react";
+import { useState } from "react";
 
-const MainNavItem = ({ item, currentPage, index }) => {
+const MainNavItem = ({ item, currentPage }) => {
+  const [isSubActive, setIsSubActive] = useState(false);
+
+  const handleIsActiveOn = () => {
+    setIsSubActive(true);
+  };
+
+  const handleIsActiveOff = () => {
+    setIsSubActive(false);
+  };
+
   return (
-    <li class={`main-nav-top-list-item main-nav-top-list-item-${index + 1}`}>
-      <a class={`${currentPage ? "main-nav-current" : ""}`} href={item.uri}>
+    <li
+      className={`main-nav-top-list-item`}
+      onMouseEnter={handleIsActiveOn}
+      onMouseLeave={handleIsActiveOff}
+      onFocus={handleIsActiveOn}
+    >
+      <a className={`${currentPage ? "main-nav-current" : ""}`} href={item.uri}>
         {item.label}
       </a>
       {item.childItems.nodes.length > 0 ? (
-        <ul class="main-nav-sub-menu">
+        <ul
+          className={`main-nav-sub-menu${isSubActive ? " main-nav-sub-menu-active" : ""}`}
+        >
           {item.childItems.nodes.map((subItem, subIndex) => {
             return (
-              <l key={subIndex}>
+              <li key={subIndex}>
                 <a href={subItem.uri}>{subItem.label}</a>
-              </l>
+              </li>
             );
           })}
         </ul>
