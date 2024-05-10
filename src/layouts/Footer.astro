@@ -1,7 +1,152 @@
 ---
+import { Image } from "astro:assets";
+import Wrapper from "../components/shared/Wrapper.astro";
+import "./footer.scss";
 
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query footerQuery {
+
+                siteWideSettings {
+                    siteWideOptions {
+                        businessHours {
+                            businessHours
+                        }
+                        contactInformation {
+                            email
+                            phone
+                            streetAddress
+                        }
+                        socialMediaLinks {
+                            instagram
+                            facebook
+                            xTwitter
+                        }
+                        google {
+                            googleMapsLink
+                            googleMapsImage {
+                            altText
+                            sourceUrl
+                            }
+                        }
+                    }
+                }
+
+
+                logoOptions {
+                    logoOptions {
+                        logoOptions {
+                            mainLogo {
+                            altText
+                            sourceUrl
+                            }
+                        }
+                    }
+                }
+
+
+
+            }
+        `,
+  }),
+});
+
+const {
+  data: { siteWideSettings, logoOptions },
+} = await response.json();
 ---
 
-<footer>
-    <h1>Footer</h1>
+<footer class="main-footer">
+  <Wrapper>
+    <div class="main-footer-logo">
+      <div class="main-footer-logo-wrap">
+        <Image
+          src={logoOptions.logoOptions.logoOptions.mainLogo.sourceUrl}
+          alt={logoOptions.logoOptions.logoOptions.mainLogo.altText}
+          inferSize={true}
+        />
+      </div>
+    </div>
+    <div class="main-footer-hours">
+      <div
+        set:html={siteWideSettings.siteWideOptions.businessHours.businessHours}
+      />
+      <div class="main-footer-hours-social">
+        <ul>
+          <li>
+            <a
+              target="_blank"
+              rel="noopener"
+              href={siteWideSettings.siteWideOptions.socialMediaLinks.facebook}
+              ><span>Facebook</span></a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              rel="noopener"
+              href={siteWideSettings.siteWideOptions.socialMediaLinks.instagram}
+              ><span>Instagram</span></a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              rel="noopener"
+              href={siteWideSettings.siteWideOptions.socialMediaLinks.xTwitter}
+              ><span>X Twitter</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-footer-contact">
+      <div>
+        <h3>Contact Us</h3>
+      </div>
+      <div
+        set:html={siteWideSettings.siteWideOptions.contactInformation
+          .streetAddress}
+      />
+      <div>
+        <p>
+          Phone: <a
+            href={`tel+1${siteWideSettings.siteWideOptions.contactInformation.phone}`}
+            >{siteWideSettings.siteWideOptions.contactInformation.phone}</a
+          >
+        </p>
+        <p>
+          Phone: <a
+            href={`mailto: ${siteWideSettings.siteWideOptions.contactInformation.email}`}
+            >{siteWideSettings.siteWideOptions.contactInformation.email}</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <div class="main-footer-google">
+      <p>Where To Find Us</p>
+      <div class="main-footer-google-image">
+        <a
+          target="_blank"
+          rel="noopener"
+          href={siteWideSettings.siteWideOptions.googleMapsLink}
+        >
+          <Image
+            src={siteWideSettings.siteWideOptions.google.googleMapsImage
+              .sourceUrl}
+            alt={siteWideSettings.siteWideOptions.google.googleMapsImage
+              .altText}
+            inferSize={true}
+          />
+        </a>
+      </div>
+    </div>
+  </Wrapper>
 </footer>
