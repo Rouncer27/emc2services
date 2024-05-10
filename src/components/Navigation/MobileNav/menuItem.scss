@@ -1,0 +1,28 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/headlines";
+@use "../../../styles/global/paragraphs";
+
+.menu-links-item {
+  text-align: center;
+  border-bottom: 0.25rem solid $whiteColor;
+
+  li {
+    position: relative;
+    width: 100%;
+
+    a {
+      @extend .hl-three;
+      display: block;
+      width: 100%;
+      position: absolute;
+      padding-top: 2rem;
+      color: $whiteColor;
+      cursor: pointer;
+      text-transform: uppercase;
+
+      &:hover {
+        color: $secondaryColor;
+      }
+    }
+  }
+}

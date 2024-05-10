@@ -18,6 +18,14 @@
       width: calc(10%);
       max-width: 10rem;
     }
+
+    h1 {
+      margin: 0;
+      span {
+        position: absolute;
+        left: -999%;
+      }
+    }
   }
 
   &-navigation {
@@ -32,6 +40,14 @@
     @media (min-width: 1081px) {
       width: calc(90%);
       align-self: flex-end;
+    }
+  }
+
+  &-mobile {
+    display: block;
+
+    @media (min-width: 769px) {
+      display: none;
     }
   }
 }

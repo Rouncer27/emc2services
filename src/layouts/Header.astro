@@ -1,9 +1,9 @@
 ---
-import MainNav from '../components/Navigation/MainNav/MainNav.jsx';
-import MainLogo from '../components/Logo/MainLogo.astro';
-import Wrapper from '../components/shared/Wrapper.astro';
+import MainNav from "../components/Navigation/MainNav/MainNav.jsx";
+import MainLogo from "../components/Logo/MainLogo.astro";
+import MobileNav from "../components/Navigation/MobileNav/MobileNav";
+import Wrapper from "../components/shared/Wrapper.astro";
 import "./header.scss";
-
 
 const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
   method: "POST",
@@ -14,6 +14,22 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
     query: `
         query headerQuery {
             menu(id: "Main Menu", idType: NAME) {
+                menuItems {
+                    nodes {
+                        label
+                        uri
+                        parentId
+                        childItems {
+                            nodes {
+                                label
+                                uri
+                            }
+                        }
+                    }
+                }
+            }
+
+            mobile: menu(id: "Main Mobile", idType: NAME) {
                 menuItems {
                     nodes {
                         label
@@ -43,16 +59,39 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
     `,
   }),
 });
-const { data: {menu: {menuItems}, logoOptions:{logoOptions: {logoOptions}}} } = await response.json();
+const {
+  data: {
+    menu: { menuItems },
+    mobile,
+    logoOptions: {
+      logoOptions: { logoOptions },
+    },
+  },
+} = await response.json();
 ---
 
 <header class="header">
-    <Wrapper classes="header-wrap">
-        <div class="header-logo">
-            <MainLogo data={logoOptions} />
-        </div>
-        <div class="header-navigation">
-            <MainNav client:only="react" menuItems={menuItems.nodes} pathname={Astro.url.pathname} />
-        </div>
-    </Wrapper>
+  <Wrapper classes="header-wrap">
+    <div class="header-logo">
+      <h1>
+        <a href="/">
+          <MainLogo data={logoOptions} />
+        </a>
+
+        <span
+          >e=mc2 - The Centre For Business Excellence, Where Ideas Are Formed</span
+        >
+      </h1>
+    </div>
+    <div class="header-navigation">
+      <MainNav
+        client:only="react"
+        menuItems={menuItems.nodes}
+        pathname={Astro.url.pathname}
+      />
+    </div>
+  </Wrapper>
+  <div class="header-mobile">
+    <MobileNav client:only="react" mainMenu={mobile} mainLogo={logoOptions} />
+  </div>
 </header>
