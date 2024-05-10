@@ -7,15 +7,12 @@ import MenuItem from "./MenuItem";
 import { staggerReveal } from "./animations/animations";
 
 const Hamburger = ({ state, mainMenu, mainLogo }) => {
-  console.log("mainLogo", mainLogo.mainLogo);
   let menu = useRef(null);
   let revealMenu = useRef(null);
   let revealMenuBackground = useRef(null);
   let revealMenuBackgroundTwo = useRef(null);
 
   useEffect(() => {
-    const links = document.querySelectorAll(".menu-links-item li");
-
     if (state.clicked === false) {
       // close menu
       gsap.to([revealMenu, revealMenuBackgroundTwo, revealMenuBackground], {
@@ -84,13 +81,21 @@ const Hamburger = ({ state, mainMenu, mainLogo }) => {
                   );
                 })}
                 <div className="menu-links-item">
-                  <li className="main-nav-top-list-item main-nav-top-list-item-cta-one">
-                    <a href="https://members.emc2services.ca/">Book Now</a>
+                  <li className="menu-links-item-list">
+                    <a
+                      className="menu-links-item-link"
+                      href="https://members.emc2services.ca/"
+                    >
+                      Book Now
+                    </a>
                   </li>
                 </div>
                 <div className="menu-links-item">
-                  <li className="main-nav-top-list-item main-nav-top-list-item-cta-two">
-                    <a href="https://members.emc2services.ca/login/true">
+                  <li className="menu-links-item-list">
+                    <a
+                      className="menu-links-item-link"
+                      href="https://members.emc2services.ca/login/true"
+                    >
                       Login
                     </a>
                   </li>
