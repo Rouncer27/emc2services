@@ -23,8 +23,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 						heroIntoComponent {
 							mainTitle
 							heroImage {
-							altText
-							sourceUrl
+								altText
+								sourceUrl
 							}
 						}
 
@@ -115,11 +115,11 @@ const {
 ---
 
 <Layout>
-  <HeroIntro data={page.heroIntoComponent} />
-  <BlockOne data={page.blockOneComponent} />
-  <Testimonials data={page.testimonialsComponent} />
-  <Slider client:only="react" data={page.sliderComponent} />
-  <BlockTwo data={page.blockTwoComponent} />
-  <BlockThree data={page.blockThreeComponent} />
-  <BlockFour data={page.blockFourComponent} />
+  <HeroIntro data={page.homePage.heroIntoComponent} />
+  <BlockOne data={page.homePageblockOneComponent} />
+  <Testimonials data={page.homePage.testimonialsComponent} />
+  <Slider client:only="react" data={page.homePage.sliderComponent} />
+  <BlockTwo data={page.homePage.blockTwoComponent} />
+  <BlockThree data={page.homePage.blockThreeComponent} />
+  <BlockFour data={page.homePage.blockFourComponent} />
 </Layout>
