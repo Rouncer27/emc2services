@@ -104,20 +104,36 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 					}
 
 				}
+
+
+				testimonials {
+					nodes {
+						title
+						testimonialPost {
+							testimonial
+						}
+					}
+				}
+
+
+
 			}
 		`,
   }),
 });
 
 const {
-  data: { page },
+  data: { page, testimonials },
 } = await response.json();
 ---
 
 <Layout>
   <HeroIntro data={page.homePage.heroIntoComponent} />
   <BlockOne data={page.homePage.blockOneComponent} />
-  <Testimonials data={page.homePage.testimonialsComponent} />
+  <Testimonials
+    data={page.homePage.testimonialsComponent}
+    testimonials={testimonials.nodes}
+  />
   <Slider client:only="react" data={page.homePage.sliderComponent} />
   <BlockTwo data={page.homePage.blockTwoComponent} />
   <BlockThree data={page.homePage.blockThreeComponent} />

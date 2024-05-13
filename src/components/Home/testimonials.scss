@@ -1,0 +1,66 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+
+.hometestimonial {
+  background: linear-gradient(
+    to bottom,
+    $blackColor 0%,
+    $blackColor 25%,
+    $whiteColor 25%,
+    $whiteColor 26%,
+    $primaryColor 26%,
+    $primaryColor 100%
+  );
+
+  @media (min-width: 768px) {
+    background: linear-gradient(
+      to right,
+      $blackColor 0%,
+      $blackColor 17%,
+      $whiteColor 17%,
+      $whiteColor 17.5%,
+      $primaryColor 17.5%,
+      $primaryColor 100%
+    );
+  }
+
+  &-wrapper {
+    align-items: center;
+  }
+
+  &-icon {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(20%);
+    }
+
+    img {
+      max-width: 16rem;
+    }
+  }
+
+  &-content {
+    width: calc(100%);
+    padding: 2.5rem 0;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      width: calc(80%);
+      padding: 4rem 0;
+      text-align: left;
+    }
+
+    @media (min-width: 1025px) {
+      padding: 5rem 0;
+      margin-right: auto;
+      max-width: 75rem;
+    }
+
+    p {
+      @extend .p-one;
+      margin: 0;
+      color: $whiteColor;
+    }
+  }
+}
