@@ -1,7 +1,20 @@
 ---
-
+import Wrapper from "../shared/Wrapper.astro";
+import "./blockTwo.scss";
+import Stat from "./Stat.astro";
 ---
 
-<div>
-  <h1>BlockTwo</h1>
+<div class="homeb2">
+  <Wrapper classes="homeb2-wrapper">
+    <div class="homeb2-content">
+      <div set:html={Astro.props.data.content} />
+    </div>
+    <div class="homeb2-stats">
+      {
+        Astro.props.data.stats.map((stat) => {
+          return <Stat stat={stat} />;
+        })
+      }
+    </div>
+  </Wrapper>
 </div>

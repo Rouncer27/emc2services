@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import "./stat.scss";
+---
+
+<div class="single-stat">
+  <div class="single-stat-image">
+    <Image
+      src={Astro.props.stat.icon.sourceUrl}
+      alt={Astro.props.stat.icon.altText}
+      inferSize={true}
+    />
+  </div>
+  <div class="single-stat-content">
+    <h2>{Astro.props.stat.title}</h2>
+    <p class="single-stat-content-number">
+      <span>{Astro.props.stat.statNumber}</span>
+      <span>&#37;</span>
+    </p>
+    <p class="single-stat-content-outro">{Astro.props.stat.content}</p>
+  </div>
+</div>

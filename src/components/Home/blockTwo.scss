@@ -1,0 +1,33 @@
+@use "../../styles/global/headlines";
+
+.homeb2 {
+  &-wrapper {
+    align-items: center;
+  }
+
+  &-content {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50% - 4rem);
+      margin-right: 4rem;
+    }
+
+    p {
+      @extend .hl-three;
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+
+  &-stats {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50% - 4rem);
+      margin-left: 4rem;
+    }
+  }
+}
