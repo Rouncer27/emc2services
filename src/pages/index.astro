@@ -1,20 +1,125 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Headline from '../components/shared/Headline.astro';
-import Paragraph from '../components/shared/Paragraph.astro';
-import Button from '../components/shared/Button.astro';
+import Layout from "../layouts/Layout.astro";
+import HeroIntro from "../components/Home/HeroIntro.astro";
+import BlockOne from "../components/Home/BlockOne.astro";
+import Testimonials from "../components/Home/Testimonials.astro";
+import Slider from "../components/Home/Slider.jsx";
+import BlockTwo from "../components/Home/BlockTwo.astro";
+import BlockThree from "../components/Home/BlockThree.astro";
+import BlockFour from "../components/Home/BlockFour.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query homePageQuery {
+				page(id: "/", idType: URI) {
+					homePage {
+
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							heroImage {
+							altText
+							sourceUrl
+							}
+						}
+
+						# START Hero section #
+						blockOneComponent {
+							largeText
+							smallText
+							largeImage {
+								altText
+								sourceUrl
+							}
+							smallImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						testimonialsComponent {
+        					displayTestimonialBlock
+      					}
+
+						# START Hero section #
+						sliderComponent {
+							title
+							sliderSlides {
+								tabTitle
+								slideTitle
+								slideContent
+								slideImage {
+									altText
+									sourceUrl
+								}
+							}
+						}
+
+						# START Hero section #
+						blockTwoComponent {
+							content
+							stats {
+								title
+								statNumber
+								content
+								icon {
+									altText
+									sourceUrl
+								}
+							}
+						}
+
+						# START Hero section #
+						blockThreeComponent {
+							title
+							contentBlocks {
+								title
+								content
+								backgroundColor
+								icon {
+									altText
+									sourceUrl
+								}
+							}
+							buttonOneText
+							buttonOneUrl
+							buttonTwoText
+							buttonTwoUrl
+						}
+
+						# START Hero section #
+						blockFourComponent {
+							display
+							title
+							content
+							video
+						}
+						# START Hero section #
+					}
+
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
 ---
 
-<Layout >
-	<Headline hlstyle="one">Vestibulum auctor dapibus neque.</Headline>
-	<Headline hlstyle="two">Vestibulum auctor dapibus neque.</Headline>
-	<Headline hlstyle="three">Vestibulum auctor dapibus neque.</Headline>
-	<Headline hlstyle="four">Vestibulum auctor dapibus neque.</Headline>
-	<Headline hlstyle="five">Vestibulum auctor dapibus neque.</Headline>
-	<Paragraph pstyle="one">Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</Paragraph>
-	<Paragraph pstyle="two">Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</Paragraph>
-	<Paragraph pstyle="three">Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</Paragraph>
-	<Button btnstyle="one">Click Me!</Button>
-	<Button btnstyle="two">Click Me!</Button>
-	<Button btnstyle="three">Click Me!</Button>
+<Layout>
+  <HeroIntro data={page.heroIntoComponent} />
+  <BlockOne data={page.blockOneComponent} />
+  <Testimonials data={page.testimonialsComponent} />
+  <Slider client:only="react" data={page.sliderComponent} />
+  <BlockTwo data={page.blockTwoComponent} />
+  <BlockThree data={page.blockThreeComponent} />
+  <BlockFour data={page.blockFourComponent} />
 </Layout>
