@@ -1,7 +1,36 @@
 ---
-
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./blockOne.scss";
+import Headline from "../shared/Headline.astro";
 ---
 
-<div>
-  <h1>Block One</h1>
+<div class="homeb1">
+  <Wrapper>
+    <div class="homeb1-content">
+      <Headline hlstyle="three" classes="homeb1-content-large-content" ele="h2"
+        >{Astro.props.data.largeText}</Headline
+      >
+      <div
+        class="homeb1-content-small-content"
+        set:html={Astro.props.data.smallText}
+      />
+    </div>
+    <div class="homeb1-images">
+      <div class="homeb1-images-large">
+        <Image
+          src={Astro.props.data.largeImage.sourceUrl}
+          alt={Astro.props.data.largeImage.altText}
+          inferSize={true}
+        />
+      </div>
+      <div class="homeb1-images-small">
+        <Image
+          src={Astro.props.data.smallImage.sourceUrl}
+          alt={Astro.props.data.smallImage.altText}
+          inferSize={true}
+        />
+      </div>
+    </div>
+  </Wrapper>
 </div>
