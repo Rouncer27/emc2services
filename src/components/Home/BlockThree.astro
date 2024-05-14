@@ -1,7 +1,34 @@
 ---
-
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./blockThree.scss";
 ---
 
-<div>
-  <h1>Block Three</h1>
+<div class="homeb3">
+  <Wrapper classes="homeb3-wrapper">
+    <div class="homeb3-title">
+      <h2>{Astro.props.data.title}</h2>
+    </div>
+    {
+      Astro.props.data.contentBlocks.map((content) => {
+        return (
+          <div class={`homeb3-block homeb3-block-${content.backgroundColor}`}>
+            <div class="homeb3-block-icon">
+              <div class="homeb3-block-icon-wrap">
+                <Image
+                  src={content.icon.sourceUrl}
+                  alt={content.icon.altText}
+                  inferSize={true}
+                />
+              </div>
+            </div>
+            <div class="homeb3-block-title">
+              <h3>{content.title}</h3>
+            </div>
+            <div class="homeb3-block-content" set:html={content.content} />
+          </div>
+        );
+      })
+    }
+  </Wrapper>
 </div>
