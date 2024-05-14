@@ -73,4 +73,19 @@
       }
     }
   }
+
+  &-links {
+    width: 100%;
+    margin: 2rem 0 3rem;
+    text-align: center;
+
+    .homeb3-links-one {
+      margin-right: 1rem;
+    }
+
+    .homeb3-links-two {
+      background-color: $accentColor;
+      margin-left: 1rem;
+    }
+  }
 }

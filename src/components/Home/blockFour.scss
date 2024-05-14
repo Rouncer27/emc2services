@@ -1,0 +1,62 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/headlines";
+$rock-slab: url("./assets/rock-slab-long.jpg");
+
+.homeb4 {
+  &-header {
+    position: relative;
+  }
+
+  &-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: $rock-slab;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+
+  &-title {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+
+    h2 {
+      color: $whiteColor;
+    }
+
+    p {
+      @extend .hl-three;
+      color: $whiteColor;
+    }
+  }
+
+  &-video {
+    width: 100%;
+
+    p {
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+    }
+
+    iframe {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 45rem;
+
+      @media (min-width: 768px) {
+        min-height: 55rem;
+      }
+
+      @media (min-width: 1025px) {
+        min-height: 70rem;
+      }
+    }
+  }
+}
