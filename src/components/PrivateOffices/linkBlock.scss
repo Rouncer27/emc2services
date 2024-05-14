@@ -1,0 +1,32 @@
+@use "../../styles/abstracts/" as *;
+
+.polink {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 2rem 0;
+  background-color: $primaryColor;
+
+  &.polink-two {
+    background-color: $accentColor;
+    margin-bottom: 1rem;
+  }
+
+  &-wrapper {
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &-content {
+    margin-right: 6rem;
+
+    h3 {
+      margin: 0;
+      color: $whiteColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &-btn {
+    margin-left: 6rem;
+  }
+}

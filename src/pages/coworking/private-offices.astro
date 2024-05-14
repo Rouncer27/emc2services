@@ -1,7 +1,75 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
+import HeroIntro from "../../components/PrivateOffices/HeroIntro.astro";
+import ContentBlock from "../../components/PrivateOffices/ContentBlock.astro";
+import ImageBlock from "../../components/PrivateOffices/ImageBlock.astro";
+import LinkBlock from "../../components/PrivateOffices/LinkBlock.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query privateOfficesPageQuery {
+				page(id: "/private-offices", idType: URI) {
+					privateOfficesPage {
+
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						contentBlockComponent {
+        					mainContent
+      					}
+
+						# START Hero section #
+						imagesBlockComponent {
+							imageOne {
+								altText
+								sourceUrl
+							}
+							imageTwo {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						linkBlockComponent {
+							content
+							buttonText
+							buttonUrl
+							contentTwo
+							buttonTextTwo
+							buttonUrlTwo
+						}
+
+					
+					}
+
+				}
+
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
 ---
 
-<Layout >
-	<h1>CoWorking - Private Offices Page</h1>
+<Layout>
+  <HeroIntro data={page.privateOfficesPage.heroIntoComponent} />
+  <ContentBlock data={page.privateOfficesPage.contentBlockComponent} />
+  <ImageBlock data={page.privateOfficesPage.imagesBlockComponent} />
+  <LinkBlock data={page.privateOfficesPage.linkBlockComponent} />
 </Layout>

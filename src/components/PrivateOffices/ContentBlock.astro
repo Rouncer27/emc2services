@@ -1,0 +1,13 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./contentBlock.scss";
+---
+
+<div class="pocontent">
+  <Wrapper wrapType="stand">
+    <div class="pocontent-container">
+      <div class="pocontent-line"></div>
+      <div class="pocontent-content" set:html={Astro.props.data.mainContent} />
+    </div>
+  </Wrapper>
+</div>
