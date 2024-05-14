@@ -1,7 +1,112 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
+import HeroIntro from "../../components/CoWorking/HeroIntro.astro";
+import BlockOne from "../../components/CoWorking/BlockOne.astro";
+import BlockTwo from "../../components/CoWorking/BlockTwo.astro";
+import BlockThree from "../../components/CoWorking/BlockThree.astro";
+import Testimonials from "../../components/CoWorking/Testimonials.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query coworkingPageQuery {
+				page(id: "/coworking", idType: URI) {
+					coworkingPage {
+
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							mainContent
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						blockOneComponent {
+							title
+							contentBlocks {
+								backgroundColor
+								content
+								title
+								icon {
+									altText
+									sourceUrl
+								}
+							}
+							buttonOneText
+							buttonOneUrl
+							buttonTwoText
+							buttonTwoUrl
+						}
+
+						# START Hero section #
+						blockTwoComponent {
+							mainTitle
+							blocks {
+								topTitle
+								subTitle
+								content
+								buttonText
+								buttonLink
+								background
+							}
+						}
+
+						# START Hero section #
+						blockThreeComponent {
+							mainTitle
+							items {
+								title
+								icon {
+									altText
+									sourceUrl
+								}
+							}
+						}
+
+						# START Hero section #
+						testimonialsComponent {
+								displayTestimonialBlock
+							}
+						}
+
+				}
+
+
+				testimonials {
+					nodes {
+						title
+						testimonialPost {
+							testimonial
+						}
+					}
+				}
+
+
+
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page, testimonials },
+} = await response.json();
 ---
 
-<Layout >
-	<h1>CoWorking Page</h1>
+<Layout>
+  <HeroIntro data={page.coworkingPage.heroIntoComponent} />
+  <BlockOne data={page.coworkingPage.blockOneComponent} />
+  <BlockTwo data={page.coworkingPage.blockTwoComponent} />
+  <BlockThree data={page.coworkingPage.blockThreeComponent} />
+  <Testimonials
+    data={page.coworkingPage.testimonialsComponent}
+    testimonials={testimonials.nodes}
+  />
 </Layout>

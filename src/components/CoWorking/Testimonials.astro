@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import iconSrc from "./assets/testimonialsQuotes.png";
+import "./testimonials.scss";
+const allTestimonialsLength = Astro.props.testimonials.length;
+const rndInt = Math.floor(Math.random() * allTestimonialsLength);
+const testimonial = Astro.props.testimonials[rndInt];
+---
+
+<div class="hometestimonial">
+  <Wrapper classes="hometestimonial-wrapper">
+    <div class="hometestimonial-icon">
+      <Image
+        src={iconSrc}
+        alt={"Testimonial Quotes"}
+        width={iconSrc.width}
+        height={iconSrc.height}
+      />
+    </div>
+    <div class="hometestimonial-content">
+      <p>
+        <span>{testimonial.testimonialPost.testimonial}</span><span>
+          &#8211; {testimonial.title}</span
+        >
+      </p>
+    </div>
+  </Wrapper>
+</div>

@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import Button from "../shared/Button.astro";
+import "./blockOne.scss";
+---
+
+<div class="coworkingb1">
+  <Wrapper classes="coworkingb1-wrapper">
+    <div class="coworkingb1-title">
+      <h2>{Astro.props.data.title}</h2>
+    </div>
+    {
+      Astro.props.data.contentBlocks.map((content) => {
+        return (
+          <div
+            class={`coworkingb1-block coworkingb1-block-${content.backgroundColor}`}
+          >
+            <div class="coworkingb1-block-icon">
+              <div class="coworkingb1-block-icon-wrap">
+                <Image
+                  src={content.icon.sourceUrl}
+                  alt={content.icon.altText}
+                  inferSize={true}
+                />
+              </div>
+            </div>
+            <div class="coworkingb1-block-title">
+              <h3>{content.title}</h3>
+            </div>
+            <div class="coworkingb1-block-content" set:html={content.content} />
+          </div>
+        );
+      })
+    }
+
+    <div class="coworkingb1-links">
+      <Button
+        classes="coworkingb1-links-one"
+        btnstyle="one"
+        target="_blank"
+        rel="noopener"
+        href={Astro.props.data.buttonOneUrl}
+        >{Astro.props.data.buttonOneText}</Button
+      >
+      <Button
+        classes="coworkingb1-links-two"
+        btnstyle="three"
+        target="_blank"
+        rel="noopener"
+        href={Astro.props.data.buttonTwoUrl}
+        >{Astro.props.data.buttonTwoText}</Button
+      >
+    </div>
+  </Wrapper>
+</div>
