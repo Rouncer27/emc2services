@@ -2,13 +2,14 @@
 import { Image } from "astro:assets";
 import Wrapper from "../shared/Wrapper.astro";
 import "./blockThree.scss";
+import Headline from "../shared/Headline.astro";
 console.log(Astro.props.data);
 ---
 
 <div class="coworkingb3">
   <Wrapper>
     <div class="coworkingb3-title">
-      <h2>{Astro.props.data.mainTitle}</h2>
+      <Headline ele="h2" hlstyle="two"> {Astro.props.data.mainTitle}</Headline>
     </div>
     <div class="coworkingb3-items">
       {
