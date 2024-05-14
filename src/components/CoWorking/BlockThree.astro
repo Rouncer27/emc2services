@@ -1,7 +1,34 @@
 ---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
 import "./blockThree.scss";
+console.log(Astro.props.data);
 ---
 
-<div>
-  <h1>Block Three</h1>
+<div class="coworkingb3">
+  <Wrapper>
+    <div class="coworkingb3-title">
+      <h2>{Astro.props.data.mainTitle}</h2>
+    </div>
+    <div class="coworkingb3-items">
+      {
+        Astro.props.data.items.map((item) => {
+          return (
+            <div class="coworkingb3-item">
+              <div class="coworkingb3-item-icon">
+                <Image
+                  src={item.icon.sourceUrl}
+                  alt={item.icon.altText}
+                  inferSize={true}
+                />
+              </div>
+              <div class="coworkingb3-item-title">
+                <p>{item.title}</p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Wrapper>
 </div>
