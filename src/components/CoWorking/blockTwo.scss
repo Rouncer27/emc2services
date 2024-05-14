@@ -1,0 +1,107 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+$rock-slab: url("./assets/rock-slab.jpg");
+$wood-slab: url("./assets/wood-slab.jpg");
+
+.coworkingb2 {
+  &-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    &.coworkingb2-block-reverse {
+      flex-direction: row-reverse;
+    }
+
+    &.coworkingb2-block-color {
+      .coworkingb2-block-content {
+        background-color: $tertiaryColor;
+
+        h3 {
+          color: $primaryColor;
+        }
+      }
+    }
+
+    &.coworkingb2-block-wood {
+      .coworkingb2-block-content {
+        background-image: $wood-slab;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        h3,
+        p {
+          color: $whiteColor;
+        }
+      }
+    }
+
+    &.coworkingb2-block-slab {
+      .coworkingb2-block-content {
+        background-image: $rock-slab;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        h3,
+        p {
+          color: $whiteColor;
+        }
+      }
+    }
+
+    &-image {
+      position: relative;
+      width: calc(50%);
+      min-height: 60rem;
+
+      &-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-content {
+      width: calc(50%);
+      padding: 8rem 5rem;
+
+      &-title {
+        h3 {
+          margin-bottom: 1rem;
+        }
+      }
+
+      &-para {
+        p {
+          @extend .p-two;
+        }
+      }
+    }
+  }
+}

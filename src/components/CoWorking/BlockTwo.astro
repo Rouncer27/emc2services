@@ -1,7 +1,53 @@
 ---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import Button from "../shared/Button.astro";
 import "./blockTwo.scss";
+import Headline from "../shared/Headline.astro";
 ---
 
-<div>
-  <h1>Block Two</h1>
+<div class="coworkingb2">
+  <Wrapper>
+    <div class="coworkingb2-title">
+      <h2>{Astro.props.data.mainTitle}</h2>
+    </div>
+  </Wrapper>
+  <div class="coworkingb2-blocks">
+    {
+      Astro.props.data.blocks.map((block, index) => {
+        return (
+          <div
+            class={`coworkingb2-block${(index + 1) % 2 === 0 ? " coworkingb2-block-reverse" : ""} coworkingb2-block-${block.background}`}
+          >
+            <div class="coworkingb2-block-image">
+              <div class="coworkingb2-block-image-wrap">
+                <Image
+                  src={block.image.sourceUrl}
+                  alt={block.image.altText}
+                  inferSize={true}
+                />
+              </div>
+            </div>
+            <div class="coworkingb2-block-content">
+              <div class="coworkingb2-block-content-title">
+                <Headline ele="h3" hlstyle="two">
+                  {block.topTitle}
+                </Headline>
+                <Headline ele="p" hlstyle="three">
+                  {block.subTitle}
+                </Headline>
+              </div>
+              <div
+                class="coworkingb2-block-content-para"
+                set:html={block.content}
+              />
+              <div class="coworkingb2-block-content-links">
+                <Button href={block.buttonLink}>{block.buttonText}</Button>
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
 </div>
