@@ -1,7 +1,19 @@
 ---
 import "./linkBlock.scss";
+import Wrapper from "../shared/Wrapper.astro";
+import Headline from "../shared/Headline.astro";
+import Button from "../shared/Button.astro";
 ---
 
-<div>
-  <h1>Link Block</h1>
+<div class="ddlink">
+  <Wrapper classes="ddlink-wrapper" wrapType="stand">
+    <div class="ddlink-content">
+      <Headline ele="h3" hlstyle="three">{Astro.props.data.content}</Headline>
+    </div>
+    <div class="ddlink-btn">
+      <Button target="_blank" rel="noopener" href={Astro.props.data.buttonUrl}
+        >{Astro.props.data.buttonText}</Button
+      >
+    </div>
+  </Wrapper>
 </div>

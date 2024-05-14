@@ -1,0 +1,27 @@
+@use "../../styles/abstracts/" as *;
+
+.ddlink {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 2rem 0;
+  background-color: $primaryColor;
+
+  &-wrapper {
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &-content {
+    margin-right: 6rem;
+
+    h3 {
+      margin: 0;
+      color: $whiteColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &-btn {
+    margin-left: 6rem;
+  }
+}

@@ -1,0 +1,44 @@
+@use "../../styles/abstracts/" as *;
+
+.ddcontent {
+  margin-top: 3rem;
+
+  &-container {
+    display: flex;
+    width: 100%;
+  }
+
+  &-line {
+    width: 2.7rem;
+    height: 100%;
+    margin: 0 3.3rem 0 auto;
+    background-color: $tertiaryColor;
+  }
+
+  &-content {
+    width: 90%;
+    margin-right: 0;
+    margin-left: auto;
+
+    p.no-margin {
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin-bottom: 2.5rem;
+
+      li {
+        position: relative;
+        padding-left: 2.5rem;
+
+        &::after {
+          top: 0;
+          left: 0.5rem;
+          position: absolute;
+          display: block;
+          content: "\2013";
+        }
+      }
+    }
+  }
+}
