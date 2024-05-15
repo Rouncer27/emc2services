@@ -1,0 +1,13 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./contentBlock.scss";
+---
+
+<div class="vocontent">
+  <Wrapper wrapType="stand">
+    <div class="vocontent-container">
+      <div class="vocontent-line"></div>
+      <div class="vocontent-content" set:html={Astro.props.data.mainContent} />
+    </div>
+  </Wrapper>
+</div>

@@ -1,0 +1,19 @@
+.voimage {
+  margin-top: 5rem;
+
+  &-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &-imgone {
+    width: calc(50% - 0.5rem);
+    margin-right: 0.5rem;
+  }
+
+  &-imgtwo {
+    width: calc(50% - 0.5rem);
+    margin-left: 0.5rem;
+  }
+}
