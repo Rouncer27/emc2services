@@ -1,7 +1,85 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import HeroIntro from "../components/Pricing/HeroIntro.astro";
+import PricingBlocks from "../components/Pricing/PricingBlocks.astro";
+import Testimonials from "../components/Pricing/Testimonials.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query pricingPageQuery {
+				page(id: "/pricing", idType: URI) {
+					pricingPage {
+
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							mainContent
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						pricingBlockComponent {
+							priceBoxes {
+								topTitle
+								backgroundColour
+								bottomTitle
+								buttonLink
+								buttonText
+								points {
+									pointTitle
+									pointContent
+								}
+							}
+						}
+						
+
+						# START Hero section #
+					
+
+						# START Hero section #
+						testimonialsComponent {
+        					displayTestimonialBlock
+      					}
+			
+
+					
+					}
+
+				}
+
+				testimonials {
+					nodes {
+						title
+						testimonialPost {
+							testimonial
+						}
+					}
+				}
+
+
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page, testimonials },
+} = await response.json();
 ---
 
-<Layout >
-	<h1>Pricing Page</h1>
+<Layout>
+  <HeroIntro data={page.pricingPage.heroIntoComponent} />
+  <PricingBlocks data={page.pricingPage.pricingBlockComponent} />
+  <Testimonials
+    data={page.pricingPage.testimonialsComponent}
+    testimonials={testimonials.nodes}
+  />
 </Layout>

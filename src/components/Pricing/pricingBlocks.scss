@@ -1,0 +1,132 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+@use "../../styles/global/buttons";
+
+.pricing {
+  &-wrapper {
+    justify-content: flex-start !important;
+  }
+
+  &-box {
+    position: relative;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
+
+    @media (min-width: 1025px) {
+      width: calc(33.33333333% - 3rem);
+      margin: 3rem 1.5rem;
+      padding-bottom: 15rem;
+    }
+
+    &-title {
+      padding: 4rem 2rem;
+
+      h2 {
+        @extend .p-two;
+        color: $whiteColor;
+        margin: 0;
+        text-align: center;
+        text-transform: uppercase;
+      }
+    }
+
+    &-points {
+      width: 100%;
+      padding: 4rem 2rem;
+
+      &-point {
+        text-align: center;
+        padding: 1.5rem 0;
+        border-bottom: 0.1rem solid #707070;
+
+        &-title {
+          width: 100%;
+
+          p {
+            @extend .p-two;
+            margin: 0;
+          }
+        }
+
+        &-content {
+          width: 100%;
+
+          p {
+            @extend .p-two;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    &-bottitle {
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+
+      p {
+        @extend .p-two;
+        color: $whiteColor;
+        margin: 0;
+      }
+    }
+
+    &-link {
+      width: 100%;
+
+      a {
+        @extend .btn-one;
+        display: block;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        background-color: #ddd3c9;
+      }
+    }
+
+    &-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    &.pricing-box-bg-brown {
+      border: 0.3rem solid $primaryColor;
+
+      .pricing-box-title,
+      .pricing-box-bottitle {
+        background-color: $primaryColor;
+      }
+    }
+
+    &.pricing-box-bg-lgt-brown {
+      border: 0.3rem solid $secondaryColor;
+
+      .pricing-box-title,
+      .pricing-box-bottitle {
+        background-color: $secondaryColor;
+      }
+    }
+
+    &.pricing-box-bg-blue {
+      border: 0.3rem solid $accentColor;
+
+      .pricing-box-title,
+      .pricing-box-bottitle {
+        background-color: $accentColor;
+      }
+    }
+
+    &.pricing-box-bg-black {
+      border: 0.3rem solid $blackColor;
+
+      .pricing-box-title,
+      .pricing-box-bottitle {
+        background-color: $blackColor;
+      }
+    }
+  }
+}
