@@ -1,7 +1,75 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
+import HeroIntro from "../../components/MeetingRooms/HeroIntro.astro";
+import ContentBlock from "../../components/MeetingRooms/ContentBlock.astro";
+import ImageBlock from "../../components/MeetingRooms/ImageBlock.astro";
+import LinkBlock from "../../components/MeetingRooms/LinkBlock.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query meetingRoomsPageQuery {
+				page(id: "/meeting-rooms", idType: URI) {
+					meetingRoomsPage {
+
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						contentBlockComponent {
+        					mainContent
+      					}
+
+						# START Hero section #
+						imagesBlockComponent {
+							imageOne {
+								altText
+								sourceUrl
+							}
+							imageTwo {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						linkBlockComponent {
+							content
+							buttonText
+							buttonUrl
+							contentTwo
+							buttonTextTwo
+							buttonUrlTwo
+						}
+
+					
+					}
+
+				}
+
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
 ---
 
-<Layout >
-	<h1>Workspaces - Meeting Rooms Page</h1>
+<Layout>
+  <HeroIntro data={page.meetingRoomsPage.heroIntoComponent} />
+  <ContentBlock data={page.meetingRoomsPage.contentBlockComponent} />
+  <ImageBlock data={page.meetingRoomsPage.imagesBlockComponent} />
+  <LinkBlock data={page.meetingRoomsPage.linkBlockComponent} />
 </Layout>

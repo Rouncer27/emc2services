@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./heroIntro.scss";
+---
+
+<div class="meetingrooms-hero">
+  <div class="meetingrooms-hero-image">
+    <div class="meetingrooms-hero-image-wrapper">
+      <Image
+        src={Astro.props.data.heroImage.sourceUrl}
+        alt={Astro.props.data.heroImage.altText}
+        inferSize={true}
+      />
+    </div>
+  </div>
+
+  <div class="meetingrooms-hero-content">
+    <Wrapper>
+      <h1 set:html={Astro.props.data.mainTitle} />
+    </Wrapper>
+  </div>
+</div>

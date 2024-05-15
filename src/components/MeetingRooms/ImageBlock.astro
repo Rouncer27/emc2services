@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import "./imageBlock.scss";
+---
+
+<div class="mrimage">
+  <div class="mrimage-wrapper">
+    <div class="mrimage-imgone">
+      <Image
+        src={Astro.props.data.imageOne.sourceUrl}
+        alt={Astro.props.data.imageOne.altText}
+        inferSize={true}
+      />
+    </div>
+    <div class="mrimage-imgtwo">
+      <Image
+        src={Astro.props.data.imageTwo.sourceUrl}
+        alt={Astro.props.data.imageTwo.altText}
+        inferSize={true}
+      />
+    </div>
+  </div>
+</div>

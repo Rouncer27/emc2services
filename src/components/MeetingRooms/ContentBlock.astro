@@ -1,0 +1,13 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./contentBlock.scss";
+---
+
+<div class="mrcontent">
+  <Wrapper wrapType="stand">
+    <div class="mrcontent-container">
+      <div class="mrcontent-line"></div>
+      <div class="mrcontent-content" set:html={Astro.props.data.mainContent} />
+    </div>
+  </Wrapper>
+</div>

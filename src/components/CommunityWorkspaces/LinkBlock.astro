@@ -1,0 +1,36 @@
+---
+import "./linkBlock.scss";
+import Wrapper from "../shared/Wrapper.astro";
+import Headline from "../shared/Headline.astro";
+import Button from "../shared/Button.astro";
+---
+
+<div class="cwlink">
+  <Wrapper classes="cwlink-wrapper" wrapType="stand">
+    <div class="cwlink-content">
+      <Headline ele="h3" hlstyle="three">{Astro.props.data.content}</Headline>
+    </div>
+    <div class="cwlink-btn">
+      <Button target="_blank" rel="noopener" href={Astro.props.data.buttonUrl}
+        >{Astro.props.data.buttonText}</Button
+      >
+    </div>
+  </Wrapper>
+</div>
+
+<div class="cwlink cwlink-two">
+  <Wrapper classes="cwlink-wrapper" wrapType="stand">
+    <div class="cwlink-content">
+      <Headline ele="h3" hlstyle="three">{Astro.props.data.contentTwo}</Headline
+      >
+    </div>
+    <div class="cwlink-btn">
+      <Button
+        target="_blank"
+        rel="noopener"
+        href={Astro.props.data.buttonUrlTwo}
+        >{Astro.props.data.buttonTextTwo}</Button
+      >
+    </div>
+  </Wrapper>
+</div>
