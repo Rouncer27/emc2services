@@ -34,3 +34,21 @@ import Button from "../shared/Button.astro";
     </div>
   </Wrapper>
 </div>
+
+<div class="volink volink-three">
+  <Wrapper classes="volink-wrapper" wrapType="stand">
+    <div class="volink-content">
+      <Headline ele="h3" hlstyle="three"
+        >{Astro.props.data.contentThree}</Headline
+      >
+    </div>
+    <div class="volink-btn">
+      <Button
+        target="_blank"
+        rel="noopener"
+        href={Astro.props.data.buttonUrlThree}
+        >{Astro.props.data.buttonTextThree}</Button
+      >
+    </div>
+  </Wrapper>
+</div>
