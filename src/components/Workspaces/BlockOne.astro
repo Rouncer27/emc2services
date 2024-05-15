@@ -6,7 +6,7 @@ import "./blockOne.scss";
 ---
 
 <div class="workspacesb2">
-  <Wrapper classes="workspacesb2-wrapper">
+  <Wrapper wrapType="big" classes="workspacesb2-wrapper">
     <div class="workspacesb2-title">
       <Headline ele="h2" hlstyle="two">{Astro.props.data.mainTitle}</Headline>
     </div>
@@ -16,11 +16,13 @@ import "./blockOne.scss";
           <div class="workspacesb2-link">
             <a href={link.linkSlug}>
               <div class="workspacesb2-link-image">
-                <Image
-                  src={link.image.sourceUrl}
-                  alt={link.image.altText}
-                  inferSize={true}
-                />
+                <div class="workspacesb2-link-image-wrap">
+                  <Image
+                    src={link.image.sourceUrl}
+                    alt={link.image.altText}
+                    inferSize={true}
+                  />
+                </div>
               </div>
               <div class="workspacesb2-link-title">
                 <h3>{link.title}</h3>
