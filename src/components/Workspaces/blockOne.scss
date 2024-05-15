@@ -1,0 +1,34 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+
+.workspacesb2 {
+  &-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &-link {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
+
+    @media (min-width: 1025px) {
+      width: calc(25%);
+    }
+
+    &-image {
+    }
+
+    &-title {
+      text-align: center;
+
+      h3 {
+        @extend .p-one;
+        margin: 0;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

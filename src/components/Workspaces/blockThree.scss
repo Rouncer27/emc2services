@@ -1,0 +1,35 @@
+@use "../../styles/global/paragraphs";
+
+.workspacesb3 {
+  &-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  &-item {
+    width: calc((100% / 5) - 5rem);
+    margin: 2rem 2.5rem;
+
+    &-icon {
+      width: 100%;
+      max-width: 11rem;
+      margin: 0 auto 2rem;
+    }
+
+    &-title {
+      width: 100%;
+      text-align: center;
+
+      p {
+        @extend .p-two;
+      }
+    }
+  }
+}

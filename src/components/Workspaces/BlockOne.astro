@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import Headline from "../shared/Headline.astro";
+import Wrapper from "../shared/Wrapper.astro";
+import "./blockOne.scss";
+---
+
+<div class="workspacesb2">
+  <Wrapper classes="workspacesb2-wrapper">
+    <div class="workspacesb2-title">
+      <Headline ele="h2" hlstyle="two">{Astro.props.data.mainTitle}</Headline>
+    </div>
+    {
+      Astro.props.data.linkBoxes.map((link) => {
+        return (
+          <div class="workspacesb2-link">
+            <a href={link.linkSlug}>
+              <div class="workspacesb2-link-image">
+                <Image
+                  src={link.image.sourceUrl}
+                  alt={link.image.altText}
+                  inferSize={true}
+                />
+              </div>
+              <div class="workspacesb2-link-title">
+                <h3>{link.title}</h3>
+              </div>
+            </a>
+          </div>
+        );
+      })
+    }
+  </Wrapper>
+</div>

@@ -1,7 +1,90 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
+import HeroIntro from "../../components/Workspaces/HeroIntro.astro";
+import BlockOne from "../../components/Workspaces/BlockOne.astro";
+import BlockTwo from "../../components/Workspaces/BlockTwo.astro";
+import BlockThree from "../../components/Workspaces/BlockThree.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query workspacesPageQuery {
+				page(id: "/workspaces", idType: URI) {
+					workspacesPage {
+
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							mainContent
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						blockOneComponent {
+							mainTitle
+							linkBoxes {
+								title
+								linkSlug
+								image {
+									altText
+									sourceUrl
+								}
+							}
+						}
+
+						# START Hero section #
+						blockTwoComponent {
+							title
+							content
+							buttonText
+							buttonLink
+							mainImage {
+								altText
+								sourceUrl
+							}
+							bottomLeftImage {
+								altText
+								sourceUrl
+							}
+							bottomRightImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						blockThreeComponent {
+							mainTitle
+							items {
+								title
+								icon {
+									altText
+									sourceUrl
+								}
+							}
+						}
+					}
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
 ---
 
-<Layout >
-	<h1>Workspaces Page</h1>
+<Layout>
+  <HeroIntro data={page.workspacesPage.heroIntoComponent} />
+  <BlockOne data={page.workspacesPage.blockOneComponent} />
+  <BlockTwo data={page.workspacesPage.blockTwoComponent} />
+  <BlockThree data={page.workspacesPage.blockThreeComponent} />
 </Layout>

@@ -1,0 +1,54 @@
+---
+import Headline from "../shared/Headline.astro";
+import Button from "../shared/Button.astro";
+import { Image } from "astro:assets";
+import "./blockTwo.scss";
+---
+
+<div class="workspacesb2">
+  <div class="workspacesb2-wrapper">
+    <div class="workspacesb2-bgimage">
+      <Image
+        src={Astro.props.data.mainImage.sourceUrl}
+        alt={Astro.props.data.mainImage.altText}
+        inferSize={true}
+      />
+    </div>
+
+    <div class="workspacesb2-content">
+      <div class="workspacesb2-content-title">
+        <Headline ele="h2" hlstyle="three">{Astro.props.data.title}</Headline>
+      </div>
+      <div
+        class="workspacesb2-content-para"
+        set:html={Astro.props.data.content}
+      />
+      <div class="workspacesb2-content-link">
+        <Button href={Astro.props.data.buttonLink}>
+          {Astro.props.data.buttonText}
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="workspacesb2-wrapperbot">
+    <div class="workspacesb2-botleft">
+      <div class="workspacesb2-botleft-container">
+        <Image
+          src={Astro.props.data.bottomLeftImage.sourceUrl}
+          alt={Astro.props.data.bottomLeftImage.altText}
+          inferSize={true}
+        />
+      </div>
+    </div>
+    <div class="workspacesb2-botright">
+      <div class="workspacesb2-botright-container">
+        <Image
+          src={Astro.props.data.bottomRightImage.sourceUrl}
+          alt={Astro.props.data.bottomRightImage.altText}
+          inferSize={true}
+        />
+      </div>
+    </div>
+  </div>
+</div>
