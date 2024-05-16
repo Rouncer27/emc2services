@@ -1,7 +1,46 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from "../../layouts/Layout.astro";
+import HeroIntro from "../../components/News/HeroIntro.astro";
+import BlockOne from "../../components/News/BlockOne.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query newsPageQuery {
+				page(id: "/news", idType: URI) {
+					newsPage {
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							mainContent
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+						# START Hero section #
+						blockOneComponent {
+        					mainContent
+      					}
+						# START Hero section #			
+						# START Hero section #
+					}
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
 ---
 
-<Layout >
-	<h1>News Page</h1>
+<Layout>
+  <HeroIntro data={page.newsPage.heroIntoComponent} />
+  <BlockOne data={page.newsPage.blockOneComponent} />
 </Layout>

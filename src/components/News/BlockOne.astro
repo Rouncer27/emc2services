@@ -1,0 +1,10 @@
+---
+import "./blockOne.scss";
+import Wrapper from "../shared/Wrapper.astro";
+---
+
+<div class="newsb1">
+  <Wrapper>
+    <div class="newsb1-content" set:html={Astro.props.data.mainContent} />
+  </Wrapper>
+</div>
