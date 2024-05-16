@@ -1,0 +1,26 @@
+@use "../../styles/global/paragraphs";
+@use "../../styles/abstracts/" as *;
+
+.aboutwys {
+  &-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &-content {
+    width: 100%;
+    padding: 0 4rem;
+
+    p {
+      @extend .p-two;
+    }
+
+    a {
+      @extend .p-two;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+  }
+}

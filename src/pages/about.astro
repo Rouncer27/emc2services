@@ -4,6 +4,7 @@ import HeroIntro from "../components/About/HeroIntro.astro";
 import BlockOne from "../components/About/BlockOne.astro";
 import BlockTwo from "../components/About/BlockTwo.astro";
 import ImageBlock from "../components/About/ImageBlock.astro";
+import WysiwygBlock from "../components/About/WysiwygBlock.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -79,7 +80,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { page },
 } = await response.json();
-console.log("page", page);
 ---
 
 <Layout>
@@ -90,4 +90,5 @@ console.log("page", page);
   <ImageBlock data={page.aboutPage.blockFourComponent} />
   <BlockTwo data={page.aboutPage.blockFiveComponent} />
   <BlockTwo data={page.aboutPage.blockSixComponent} />
+  <WysiwygBlock data={page.aboutPage.blockSevenComponent} />
 </Layout>
