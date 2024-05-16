@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./imageBlock.scss";
+---
+
+<div class="aboutib">
+  <Wrapper>
+    <div class="aboutib-one">
+      <Image
+        src={Astro.props.data.imageOne.sourceUrl}
+        alt={Astro.props.data.imageOne.altText}
+        inferSize={true}
+      />
+    </div>
+    <div class="aboutib-two">
+      <Image
+        src={Astro.props.data.imageTwo.sourceUrl}
+        alt={Astro.props.data.imageTwo.altText}
+        inferSize={true}
+      />
+    </div>
+  </Wrapper>
+</div>

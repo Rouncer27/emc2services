@@ -1,0 +1,34 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+$wood-slab: url("./assets/wood-slab.jpg");
+
+.aboutb1 {
+  position: relative;
+
+  &-content {
+    position: relative;
+    padding: 7rem 0;
+    z-index: 1;
+
+    p {
+      @extend .p-one;
+      color: $whiteColor;
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+
+  &-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-image: $wood-slab;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

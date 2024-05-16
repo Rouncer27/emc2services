@@ -1,7 +1,93 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import HeroIntro from "../components/About/HeroIntro.astro";
+import BlockOne from "../components/About/BlockOne.astro";
+import BlockTwo from "../components/About/BlockTwo.astro";
+import ImageBlock from "../components/About/ImageBlock.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query aboutPageQuery {
+				page(id: "/about", idType: URI) {
+					aboutPage {
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							mainContent
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+
+						# START Hero section #
+						blockOneComponent {
+							mainContent
+						}
+						# START Hero section #
+						blockTwoComponent {
+							mainTitle
+							mainContent
+						}
+						# START Hero section #
+						blockThreeComponent {
+							mainTitle
+							mainContent
+						}
+						# START Hero section #
+						blockFourComponent {
+							imageOne {
+								altText
+								sourceUrl
+							}
+							imageTwo {
+								altText
+								sourceUrl
+							}
+						}
+						# START Hero section #
+						blockFiveComponent {
+							mainTitle
+							mainContent
+						}
+						# START Hero section #
+						blockSixComponent {
+							mainTitle
+							mainContent
+						}
+						# START Hero section #
+						blockSevenComponent {
+							mainTitle
+							mainContent
+							mainImage {
+								altText
+								sourceUrl
+							}
+						}
+					}
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
+console.log("page", page);
 ---
 
-<Layout >
-	<h1>About Page</h1>
+<Layout>
+  <HeroIntro data={page.aboutPage.heroIntoComponent} />
+  <BlockOne data={page.aboutPage.blockOneComponent} />
+  <BlockTwo data={page.aboutPage.blockTwoComponent} />
+  <BlockTwo data={page.aboutPage.blockThreeComponent} />
+  <ImageBlock data={page.aboutPage.blockFourComponent} />
+  <BlockTwo data={page.aboutPage.blockFiveComponent} />
+  <BlockTwo data={page.aboutPage.blockSixComponent} />
 </Layout>

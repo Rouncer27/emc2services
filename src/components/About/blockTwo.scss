@@ -1,0 +1,24 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+
+.aboutb2 {
+  margin-bottom: 5rem;
+
+  &-title {
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &-content {
+    width: 100%;
+    padding: 0 4rem;
+
+    p {
+      @extend .p-two;
+    }
+  }
+}

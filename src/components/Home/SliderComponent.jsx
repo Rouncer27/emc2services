@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./sliderComponet.scss";
 
 const SliderComponent = ({ data }) => {
-  console.log("SliderComponent: ", data);
   const [slideDisplay, setSlideDisplay] = useState(0);
   const settings = {
     dots: false,

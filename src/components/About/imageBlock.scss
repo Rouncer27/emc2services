@@ -1,0 +1,19 @@
+.aboutib {
+  &-one {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50% - 0.75rem);
+      margin-right: 0.75rem;
+    }
+  }
+
+  &-two {
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50% - 0.75rem);
+      margin-left: 0.75rem;
+    }
+  }
+}
