@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroIntro from "../../components/News/HeroIntro.astro";
+import BlockOne from "../../components/News/BlockOne.astro";
+import CatNav from "../../components/News/CatNav.astro";
+import Posts from "../../components/News/Posts.astro";
+import Pagination from "../../components/News/Pagination.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query postsQuery {
+          posts(first: 999999) {
+                nodes {
+                  title
+                  slug
+                  uri
+                  postType {
+                    excerpt
+                    featuredImage {
+                      altText
+                      sourceUrl
+                    }
+                  }
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const allposts = data.posts.nodes;
+  return paginate(allposts, { pageSize: 9 });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query newsPageQuery {
+				page(id: "/news", idType: URI) {
+					newsPage {
+						# START Hero section #
+						heroIntoComponent {
+							mainTitle
+							mainContent
+							heroImage {
+								altText
+								sourceUrl
+							}
+						}
+						# START Hero section #
+						blockOneComponent {
+        					mainContent
+      					}
+						# START Hero section #			
+						# START Hero section #
+					}
+				}
+
+        categories {
+              nodes {
+                name
+                slug
+                uri
+              }
+            }
+
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page, categories },
+} = await response.json();
+---
+
+<Layout>
+  <HeroIntro data={page.newsPage.heroIntoComponent} />
+  <BlockOne data={page.newsPage.blockOneComponent} />
+  <CatNav categories={categories} />
+  <Posts posts={Astro.props} />
+  <Pagination page={Astro.props} />
+</Layout>
