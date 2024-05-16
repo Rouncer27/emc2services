@@ -13,7 +13,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   body: JSON.stringify({
     query: `
 			query communityWorkspacePageQuery {
-				page(id: "/community-workspace", idType: URI) {
+				page(id: "/workspaces/community-workspace", idType: URI) {
 					communityWorkspacePage {
 
 						# START Hero section #
