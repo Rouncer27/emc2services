@@ -29,21 +29,24 @@ import Headline from "../shared/Headline.astro";
               </div>
             </div>
             <div class="coworkingb2-block-content">
-              <div class="coworkingb2-block-content-title">
-                <Headline ele="h3" hlstyle="two">
-                  {block.topTitle}
-                </Headline>
-                <Headline ele="p" hlstyle="three">
-                  {block.subTitle}
-                </Headline>
+              <div class="coworkingb2-block-content-inner">
+                <div class="coworkingb2-block-content-title">
+                  <Headline ele="h3" hlstyle="two">
+                    {block.topTitle}
+                  </Headline>
+                  <Headline ele="p" hlstyle="three">
+                    {block.subTitle}
+                  </Headline>
+                </div>
+                <div
+                  class="coworkingb2-block-content-para"
+                  set:html={block.content}
+                />
+                <div class="coworkingb2-block-content-links">
+                  <Button href={block.buttonLink}>{block.buttonText}</Button>
+                </div>
               </div>
-              <div
-                class="coworkingb2-block-content-para"
-                set:html={block.content}
-              />
-              <div class="coworkingb2-block-content-links">
-                <Button href={block.buttonLink}>{block.buttonText}</Button>
-              </div>
+              <div class="coworkingb2-block-content-links-overlay" />
             </div>
           </div>
         );

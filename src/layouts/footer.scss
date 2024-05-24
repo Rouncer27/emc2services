@@ -41,9 +41,55 @@
       margin-bottom: 2.5rem;
 
       li {
+        margin-right: 0.5rem;
         padding: 0 0.5rem;
+
         a {
           @extend .p-three;
+          display: block;
+          position: relative;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          background-color: $blackColor;
+
+          @media (min-width: 768px) {
+            width: 2.6rem;
+            height: 2.6rem;
+          }
+          @media (min-width: 1025px) {
+            width: 4.6rem;
+            height: 4.6rem;
+            padding: 1rem;
+          }
+
+          &:focus {
+            outline: 0.4rem solid #003b49;
+            transition: outline-width 0.35s ease-in-out;
+          }
+
+          svg {
+            transition: all 0.3s ease-in;
+            fill: $whiteColor;
+          }
+
+          &:hover {
+            svg {
+              fill: $primaryColor;
+            }
+          }
+
+          .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
         }
       }
     }
