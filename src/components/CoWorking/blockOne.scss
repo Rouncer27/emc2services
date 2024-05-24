@@ -14,6 +14,7 @@
 
   &-block {
     width: calc(100%);
+    padding: 3rem 5rem 3rem;
 
     @media (min-width: 768px) {
       width: calc(33.333333% - 1rem);

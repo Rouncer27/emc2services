@@ -24,9 +24,11 @@
 
   &-stats {
     width: calc(100%);
+    margin-top: 5rem;
 
     @media (min-width: 768px) {
       width: calc(50% - 4rem);
+      margin-top: 0;
       margin-left: 4rem;
     }
   }

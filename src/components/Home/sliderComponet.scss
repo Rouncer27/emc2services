@@ -61,9 +61,13 @@ $rock-slab: url("./assets/rock-slab.jpg");
       justify-content: center;
 
       &-image {
-        width: calc(50% - 0.75rem);
-        margin-right: 0.75rem;
+        width: calc(100%);
         background-image: $wood-slab;
+
+        @media (min-width: 768px) {
+          width: calc(50% - 0.75rem);
+          margin-right: 0.75rem;
+        }
 
         &-container {
           padding: 5.5rem;
@@ -72,10 +76,14 @@ $rock-slab: url("./assets/rock-slab.jpg");
 
       &-content {
         position: relative;
-        width: calc(50% - 0.75rem);
-        margin-left: 0.75rem;
+        width: calc(100%);
         padding: 12rem 5.5rem 0;
         background-image: $rock-slab;
+
+        @media (min-width: 768px) {
+          width: calc(50% - 0.75rem);
+          margin-left: 0.75rem;
+        }
 
         &-overlay {
           position: absolute;

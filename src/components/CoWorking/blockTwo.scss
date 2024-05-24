@@ -90,8 +90,17 @@ $wood-slab: url("./assets/wood-slab.jpg");
 
     &-image {
       position: relative;
-      width: calc(50%);
-      min-height: 60rem;
+      width: calc(100%);
+      min-height: 30rem;
+
+      @media (min-width: 768px) {
+        width: calc(50%);
+        min-height: 50rem;
+      }
+
+      @media (min-width: 1025px) {
+        min-height: 60rem;
+      }
 
       &-wrap {
         position: absolute;
@@ -113,8 +122,13 @@ $wood-slab: url("./assets/wood-slab.jpg");
 
     &-content {
       position: relative;
-      width: calc(50%);
-      padding: 8rem 5rem;
+      width: calc(100%);
+      padding: 8rem 2rem;
+
+      @media (min-width: 768px) {
+        width: calc(50%);
+        padding: 8rem 5rem;
+      }
 
       .coworkingb2-block-content-inner {
         width: 100%;

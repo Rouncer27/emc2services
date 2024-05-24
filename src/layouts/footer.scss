@@ -3,8 +3,12 @@
 
 .main-footer {
   width: 100%;
-  padding: 5rem 0 10rem 0;
+  padding: 2.5rem 0;
   background-color: $secondaryColor;
+
+  @media (min-width: 768px) {
+    padding: 5rem 0 10rem 0;
+  }
 
   &-logo {
     width: calc(100%);
@@ -50,6 +54,7 @@
           position: relative;
           width: 4rem;
           height: 4rem;
+          padding: 1rem;
           border-radius: 50%;
           background-color: $blackColor;
 
