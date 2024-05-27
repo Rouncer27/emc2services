@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/SinglePost/Hero.astro";
 import WysiwygSingle from "../../components/SinglePost/WysiwygSingle.astro";
+import Navigation from "../../components/SinglePost/Navigation.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -25,9 +26,27 @@ export async function getStaticPaths() {
 
   const { data } = await response.json();
 
-  return data?.posts?.nodes?.map((post) => {
+  const allPosts = data.posts.nodes;
+
+  return allPosts.map((post, index) => {
     return {
-      params: { slug: `${post?.slug}` },
+      params: { slug: `${post.slug}` },
+      props: {
+        next:
+          index === 0
+            ? null
+            : {
+                slug: allPosts[index - 1].slug,
+                title: allPosts[index - 1].title,
+              },
+        prev:
+          index === allPosts.length - 1
+            ? null
+            : {
+                slug: allPosts[index + 1].slug,
+                title: allPosts[index + 1].title,
+              },
+      },
     };
   });
 }
@@ -66,4 +85,5 @@ const {
 <Layout>
   <Hero featuredImage={post.postType.featuredImage} />
   <WysiwygSingle wysiwyg={post.postType.wysiwyg} title={post.title} />
+  <Navigation data={Astro.props} />
 </Layout>
