@@ -54,3 +54,45 @@ import Headline from "../shared/Headline.astro";
     }
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const blocks = document.querySelectorAll(".coworkingb2-block");
+
+  if (blocks.length > 0) {
+    blocks.forEach((block) => {
+      const blockImage = block.querySelector(".coworkingb2-block-image");
+      const blockContent = block.querySelector(".coworkingb2-block-content");
+      const reversed = block.classList.contains("coworkingb2-block-reverse");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          start: "top 50%",
+          markers: false,
+          trigger: block,
+        },
+      });
+
+      tl.add("start")
+        .from(blockImage, {
+          duration: 1,
+          autoAlpha: 0,
+          x: reversed ? 100 : -100,
+          ease: "power4.out",
+        })
+        .from(
+          blockContent,
+          {
+            duration: 1,
+            autoAlpha: 0,
+            x: reversed ? -100 : 100,
+            ease: "power4.out",
+          },
+          "start+=0.5",
+        );
+    });
+  }
+</script>

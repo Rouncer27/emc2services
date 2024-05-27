@@ -54,3 +54,38 @@ import "./blockOne.scss";
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const trigger = document.querySelector(".coworkingb1");
+  const blocks = document.querySelectorAll(".coworkingb1-block");
+  const btns = document.querySelector(".coworkingb1-links");
+
+  if (blocks.length > 0 && trigger && btns) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        start: "top 50%",
+        markers: false,
+        trigger: trigger,
+      },
+    });
+
+    tl.from(blocks, {
+      duration: 1,
+      autoAlpha: 0,
+      y: 100,
+      ease: "power4.out",
+      stagger: {
+        each: 0.1,
+      },
+    }).from(btns, {
+      duration: 1,
+      autoAlpha: 0,
+      y: 100,
+      ease: "power4.out",
+    });
+  }
+</script>

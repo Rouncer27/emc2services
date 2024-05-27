@@ -32,3 +32,32 @@ import Headline from "../shared/Headline.astro";
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const trigger = document.querySelector(".coworkingb3-items");
+  const items = document.querySelectorAll(".coworkingb3-item");
+
+  if (items.length > 0 && trigger) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        start: "top 50%",
+        markers: false,
+        trigger: trigger,
+      },
+    });
+
+    tl.from(items, {
+      duration: 0.75,
+      autoAlpha: 0,
+      y: 100,
+      ease: "power4.out",
+      stagger: {
+        each: 0.2,
+      },
+    });
+  }
+</script>
