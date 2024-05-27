@@ -11,10 +11,48 @@ import Stat from "./Stat.astro";
     </div>
     <div class="homeb2-stats">
       {
-        Astro.props.data.stats.map((stat) => {
-          return <Stat stat={stat} />;
+        Astro.props.data.stats.map((stat, index) => {
+          return <Stat stat={stat} index={index} />;
         })
       }
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const trigger = document.querySelector(".homeb2-stats");
+  const allStatNums = document.querySelectorAll(
+    ".single-stat-content-number-stat",
+  );
+
+  if (allStatNums.length > 0 && trigger) {
+    gsap.from(allStatNums, {
+      textContent: 0,
+      duration: 4,
+      ease: "power1.in",
+      snap: { textContent: 1 },
+      stagger: {
+        each: 1.0,
+        onUpdate: function () {
+          this.targets()[0].innerHTML = numberWithCommas(
+            Math.ceil(this.targets()[0].textContent),
+          );
+        },
+      },
+
+      scrollTrigger: {
+        start: "top 50%",
+        markers: false,
+        trigger: trigger,
+      },
+    });
+  }
+</script>
