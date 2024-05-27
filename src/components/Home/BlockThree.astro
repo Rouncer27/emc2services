@@ -52,3 +52,38 @@ import "./blockThree.scss";
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const trigger = document.querySelector(".homeb3");
+  const blocks = document.querySelectorAll(".homeb3-block");
+  const btns = document.querySelector(".homeb3-links");
+
+  if (blocks.length > 0 && trigger && btns) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        start: "top 50%",
+        markers: false,
+        trigger: trigger,
+      },
+    });
+
+    tl.from(blocks, {
+      duration: 1,
+      autoAlpha: 0,
+      y: 100,
+      ease: "power4.in",
+      stagger: {
+        each: 0.1,
+      },
+    }).from(btns, {
+      duration: 1,
+      autoAlpha: 0,
+      y: 100,
+      ease: "power4.in",
+    });
+  }
+</script>
