@@ -18,7 +18,33 @@ import "./heroIntro.scss";
   <div class="workspaces-hero-content">
     <Wrapper>
       <h1 set:html={Astro.props.data.mainTitle} />
-      <div set:html={Astro.props.data.mainContent} />
+      <div
+        class="workspaces-hero-content-para"
+        set:html={Astro.props.data.mainContent}
+      />
     </Wrapper>
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  const title = document.querySelectorAll(".workspaces-hero-content h1");
+  const content = document.querySelectorAll(".workspaces-hero-content-para");
+  if (title && content) {
+    gsap.from(title, {
+      delay: 0.5,
+      autoAlpha: 0,
+      y: -100,
+      duration: 0.75,
+      ease: "back.out(2.5)",
+    });
+
+    gsap.from(content, {
+      delay: 0.5,
+      autoAlpha: 0,
+      y: 100,
+      duration: 0.75,
+      ease: "back.out(2.5)",
+    });
+  }
+</script>

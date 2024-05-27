@@ -21,3 +21,17 @@ import "./heroIntro.scss";
     </Wrapper>
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  const title = document.querySelectorAll(".home-hero-content h1");
+  if (title) {
+    gsap.from(title, {
+      delay: 0.5,
+      autoAlpha: 0,
+      y: -100,
+      duration: 0.75,
+      ease: "back.out(2.5)",
+    });
+  }
+</script>
