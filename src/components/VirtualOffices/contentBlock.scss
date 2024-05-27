@@ -1,5 +1,9 @@
 @use "../../styles/abstracts/" as *;
 
+$larch: url("./assets/larch.png");
+$spruce: url("./assets/spruce.png");
+$aspen: url("./assets/aspen.png");
+
 .vocontent {
   margin-top: 3rem;
 
@@ -34,6 +38,7 @@
     }
 
     ul {
+      margin-top: 1rem;
       margin-bottom: 2.5rem;
 
       li {
@@ -46,6 +51,46 @@
           position: absolute;
           display: block;
           content: "\2022";
+        }
+
+        &.larch-plan {
+          padding-left: 7rem;
+
+          &::after {
+            content: "";
+            left: 1.2rem;
+            width: 2.99rem;
+            height: 4.76rem;
+            background-image: $larch;
+            background-position: center;
+            background-size: cover;
+          }
+        }
+
+        &.spruce-plan {
+          padding-left: 7rem;
+
+          &::after {
+            content: "";
+            width: 4.4rem;
+            height: 4.88rem;
+            background-image: $spruce;
+            background-position: center;
+            background-size: cover;
+          }
+        }
+
+        &.aspen-plan {
+          padding-left: 7rem;
+
+          &::after {
+            content: "";
+            width: 4.71rem;
+            height: 4.37rem;
+            background-image: $aspen;
+            background-position: center;
+            background-size: cover;
+          }
         }
       }
     }
