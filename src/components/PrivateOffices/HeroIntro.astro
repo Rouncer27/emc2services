@@ -4,9 +4,9 @@ import Wrapper from "../shared/Wrapper.astro";
 import "./heroIntro.scss";
 ---
 
-<div class="home-hero">
-  <div class="home-hero-image">
-    <div class="home-hero-image-wrapper">
+<div class="private-hero">
+  <div class="private-hero-image">
+    <div class="private-hero-image-wrapper">
       <Image
         src={Astro.props.data.heroImage.sourceUrl}
         alt={Astro.props.data.heroImage.altText}
@@ -15,7 +15,7 @@ import "./heroIntro.scss";
     </div>
   </div>
 
-  <div class="home-hero-content">
+  <div class="private-hero-content">
     <Wrapper>
       <h1 set:html={Astro.props.data.mainTitle} />
     </Wrapper>
@@ -24,7 +24,7 @@ import "./heroIntro.scss";
 
 <script>
   import { gsap } from "gsap";
-  const title = document.querySelectorAll(".home-hero-content h1");
+  const title = document.querySelectorAll(".private-hero-content h1");
   if (title) {
     gsap.from(title, {
       delay: 0.5,
