@@ -44,3 +44,32 @@ import "./pricingBlocks.scss";
     }
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const trigger = document.querySelector(".pricing-wrapper");
+  const items = document.querySelectorAll(".pricing-box");
+
+  if (items.length > 0 && trigger) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        start: "top 50%",
+        markers: false,
+        trigger: trigger,
+      },
+    });
+
+    tl.from(items, {
+      autoAlpha: 0,
+      duration: 1,
+      y: 100,
+      ease: "power4.out",
+      stagger: {
+        each: 0.25,
+      },
+    });
+  }
+</script>
