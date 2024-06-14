@@ -1,7 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import CatNav from "../../../components/News/CatNav.astro";
-import Posts from "../../../components/Category/Posts.astro";
+import Posts from "../../../components/Category/Posts.jsx";
 import IntroTitle from "../../../components/Category/IntroTitle.astro";
 import NoPostFound from "../../../components/Category/NoPostsFound.astro";
 
@@ -80,7 +80,7 @@ const { data } = await response.json();
   <CatNav categories={data.categories} current={Astro.params["slug"]} />
   {
     data.posts.nodes.length > 0 ? (
-      <Posts posts={data.posts.nodes} />
+      <Posts client:only="react" posts={data.posts.nodes} />
     ) : (
       <NoPostFound catName={Astro.props["catName"]} />
     )
