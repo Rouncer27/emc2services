@@ -13,7 +13,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   body: JSON.stringify({
     query: `
 			query privateOfficesPageQuery {
-				page(id: "/coworking/private-offices", idType: URI) {
+				page(id: "/workspaces/private-offices", idType: URI) {
 					privateOfficesPage {
 
 						# START Hero section #

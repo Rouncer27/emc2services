@@ -21,10 +21,23 @@ const MainNav = (props) => {
             }
           })}
           <li className="main-nav-top-list-item main-nav-top-list-item-cta-one">
-            <a href="https://members.emc2services.ca/">Book Now</a>
+            <a
+              target="_blank"
+              rel="noopener"
+              ttile="Book Now - Clicking this link witll open a new browser window"
+              href={props.siteWideOptions.mainBookItUrl}
+            >
+              Book Now
+            </a>
           </li>
           <li className="main-nav-top-list-item main-nav-top-list-item-cta-two">
-            <a href="https://members.emc2services.ca/login/true">Login</a>
+            <a
+              target="_blank"
+              rel="noopener"
+              href={props.siteWideOptions.memberLoginUrl}
+            >
+              Login
+            </a>
           </li>
         </ul>
       </nav>
