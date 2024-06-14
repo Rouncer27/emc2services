@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import CatNav from "../../../components/News/CatNav.astro";
 import Posts from "../../../components/Category/Posts.astro";
 import IntroTitle from "../../../components/Category/IntroTitle.astro";
+import NoPostFound from "../../../components/Category/NoPostsFound.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -77,5 +78,11 @@ const { data } = await response.json();
 <Layout>
   <IntroTitle catName={Astro.props["catName"]} />
   <CatNav categories={data.categories} current={Astro.params["slug"]} />
-  <Posts posts={data.posts.nodes} />
+  {
+    data.posts.nodes.length > 0 ? (
+      <Posts posts={data.posts.nodes} />
+    ) : (
+      <NoPostFound catName={Astro.props["catName"]} />
+    )
+  }
 </Layout>

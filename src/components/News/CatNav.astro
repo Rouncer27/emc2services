@@ -2,7 +2,6 @@
 import Wrapper from "../shared/Wrapper.astro";
 import "./catNav.scss";
 const { categories } = Astro.props;
-console.log(Astro.props.current);
 ---
 
 <div class="cat-nav">
@@ -21,7 +20,6 @@ console.log(Astro.props.current);
       {
         categories.nodes.map((cat) => {
           const current = Astro.props.current === cat.slug;
-          console.log(current);
           if (current) {
             return <li class="current-cat">{cat.name}</li>;
           } else {
