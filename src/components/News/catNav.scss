@@ -35,6 +35,13 @@
           color: $primaryColor;
         }
       }
+
+      &.current-cat {
+        @extend .p-two;
+        color: $primaryColor;
+        font-weight: 700;
+        cursor: inherit;
+      }
     }
   }
 }

@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import CatNav from "../../../components/News/CatNav.astro";
 import Posts from "../../../components/Category/Posts.astro";
+import IntroTitle from "../../../components/Category/IntroTitle.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -28,6 +29,7 @@ export async function getStaticPaths() {
   return data.categories.nodes.map((cat) => {
     return {
       params: { slug: `${cat.slug}` },
+      props: { catName: `${cat.name}` },
     };
   });
 }
@@ -73,6 +75,7 @@ const { data } = await response.json();
 ---
 
 <Layout>
-  <CatNav categories={data.categories} />
+  <IntroTitle catName={Astro.props["catName"]} />
+  <CatNav categories={data.categories} current={Astro.params["slug"]} />
   <Posts posts={data.posts.nodes} />
 </Layout>

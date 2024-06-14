@@ -88,7 +88,7 @@ const {
 <Layout>
   <HeroIntro data={page.newsPage.heroIntoComponent} />
   <BlockOne data={page.newsPage.blockOneComponent} />
-  <CatNav categories={categories} />
+  <CatNav categories={categories} current={Astro.params["slug"]} />
   <Posts posts={Astro.props} />
   <Pagination page={Astro.props} />
 </Layout>
