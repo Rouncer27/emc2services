@@ -33,9 +33,17 @@ import "./pricingBlocks.scss";
                 <p>{box.bottomTitle}</p>
               </div>
               <div class="pricing-box-link">
-                <a target="_blank" rel="noopener" href={box.buttonLink}>
-                  {box.buttonText}
-                </a>
+                {box.buttonType === "link" ? (
+                  <a target="_blank" rel="noopener" href={box.buttonLink}>
+                    {box.buttonText}
+                  </a>
+                ) : (
+                  <a
+                    href={`mailto: ${box.buttonEmail}?subject=${box.topTitle}`}
+                  >
+                    {box.buttonText}
+                  </a>
+                )}
               </div>
             </div>
           </div>
