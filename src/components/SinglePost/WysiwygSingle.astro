@@ -10,8 +10,10 @@ import "./wysiwyg.scss";
     <div class="main-content-title">
       <Headline ele="h1" hlstyle="two">{Astro.props.title}</Headline>
     </div>
-    <Wysiwyg>
-      <div set:html={Astro.props.wysiwyg} />
-    </Wysiwyg>
+    <div class="main-content-wysiwyg">
+      <Wysiwyg>
+        <div set:html={Astro.props.wysiwyg} />
+      </Wysiwyg>
+    </div>
   </Wrapper>
 </main>

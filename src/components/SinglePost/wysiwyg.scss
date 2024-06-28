@@ -8,4 +8,18 @@
       color: $secondaryColor;
     }
   }
+
+  &-wysiwyg {
+    width: 100%;
+
+    p.margin-none {
+      margin: 0;
+    }
+
+    ul {
+      li::before {
+        content: "\2022";
+      }
+    }
+  }
 }
