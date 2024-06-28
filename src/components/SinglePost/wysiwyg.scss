@@ -17,6 +17,9 @@
     }
 
     ul {
+      li {
+        margin-bottom: 0.25rem;
+      }
       li::before {
         content: "\2022";
       }
