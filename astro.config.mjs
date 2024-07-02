@@ -5,8 +5,9 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://emc2services.ca/",
   integrations: [react(), sitemap()],
   image: {
-    domains: ["emc2services.swbdatabases3.com"]
-  }
+    domains: ["emc2services.swbdatabases3.com"],
+  },
 });
