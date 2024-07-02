@@ -1,0 +1,18 @@
+---
+import Headline from "../shared/Headline.astro";
+import Wrapper from "../shared/Wrapper.astro";
+import Wysiwyg from "../shared/Wysiwyg.astro";
+import "./mainContent.scss";
+---
+
+<div class="pp-main">
+  <Wrapper>
+    <div class="pp-main-title">
+      <Headline set:html={Astro.props.data.title} />
+    </div>
+    <Wysiwyg
+      classes="pp-main-content"
+      set:html={Astro.props.data.mainContent}
+    />
+  </Wrapper>
+</div>
