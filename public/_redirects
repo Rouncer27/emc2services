@@ -1,3 +1,6 @@
+https://www.emc2services.ca/* https://emc2services.ca/:splat 301!
+http://www.emc2services.ca/* https://emc2services.ca/:splat 301!
+
 https://emc2services.netlify.app/* https://emc2services.ca/:splat 301!
 
 
