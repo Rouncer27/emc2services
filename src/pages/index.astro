@@ -17,6 +17,17 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query: `
 			query homePageQuery {
 				page(id: "/", idType: URI) {
+					seoMetaTags {
+						seoMetaInformation {
+							metaImage {
+								altText
+								sourceUrl
+							}
+							metaTitle
+							metaDescription
+						}
+					}
+
 					homePage {
 
 						# START Hero section #
@@ -127,7 +138,11 @@ const {
 } = await response.json();
 ---
 
-<Layout>
+<Layout
+  metaImg={page.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={page.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={page.seoMetaTags.seoMetaInformation.metaDescription}
+>
   <HeroIntro data={page.homePage.heroIntoComponent} />
   <BlockOne data={page.homePage.blockOneComponent} />
   <Testimonials
