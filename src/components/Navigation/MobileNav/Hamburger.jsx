@@ -80,6 +80,7 @@ const Hamburger = ({ state, mainMenu, mainLogo }) => {
                     />
                   );
                 })}
+                {/*
                 <div className="menu-links-item">
                   <li className="menu-links-item-list">
                     <a
@@ -100,6 +101,7 @@ const Hamburger = ({ state, mainMenu, mainLogo }) => {
                     </a>
                   </li>
                 </div>
+                */}
               </ul>
             </nav>
           </div>
