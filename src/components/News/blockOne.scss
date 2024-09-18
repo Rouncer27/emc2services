@@ -17,12 +17,17 @@
       padding: 0 9rem;
     }
 
-    p {
+    p,
+    a {
       @extend .p-one;
 
       &:last-of-type {
         margin: 0;
       }
+    }
+
+    a:hover {
+      color: $primaryColor;
     }
   }
 }
