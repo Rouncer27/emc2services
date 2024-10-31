@@ -61,7 +61,7 @@ const Hamburger = ({ state, mainMenu, mainLogo }) => {
           <div className="menu-logo">
             <img
               src={mainLogo.mainLogo.sourceUrl}
-              alt={mainLogo.mainLogo.altTex}
+              alt={mainLogo.mainLogo.altText}
             />
           </div>
           <div className="menu-links">

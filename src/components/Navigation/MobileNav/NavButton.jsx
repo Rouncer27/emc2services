@@ -9,6 +9,7 @@ const NavButton = ({ handleMenu, disabled, state }) => {
         onClick={handleMenu}
         disabled={disabled}
       >
+        <span className="visually-hidden">Menu</span>
         <span />
       </button>
     </div>
