@@ -4,6 +4,7 @@ import HeroIntro from "../../components/CoWorking/HeroIntro.astro";
 import BlockOne from "../../components/CoWorking/BlockOne.astro";
 import BlockTwo from "../../components/CoWorking/BlockTwo.astro";
 import BlockThree from "../../components/CoWorking/BlockThree.astro";
+import Mailchimp from "../../components/Home/Mailchimp.astro";
 import Testimonials from "../../components/CoWorking/Testimonials.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -87,6 +88,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 							}
 						}
 
+						mailchimpComponent {
+							link
+							image {
+								altText
+								sourceUrl
+							}	
+						}
+
 						# START Hero section #
 						testimonialsComponent {
 								displayTestimonialBlock
@@ -126,6 +135,7 @@ const {
   <BlockOne data={page.coworkingPage.blockOneComponent} />
   <BlockTwo data={page.coworkingPage.blockTwoComponent} />
   <BlockThree data={page.coworkingPage.blockThreeComponent} />
+  <Mailchimp data={page.coworkingPage.mailchimpComponent} />
   <Testimonials
     data={page.coworkingPage.testimonialsComponent}
     testimonials={testimonials.nodes}
