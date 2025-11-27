@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./mailchimp.scss";
+---
+
+<div class="mailchimp">
+  <Wrapper>
+    <div class="mailchimp-link">
+      <a target="_blank" rel="noopener" href={Astro.props.data.link}>
+        <Image
+          src={Astro.props.data.image.sourceUrl}
+          alt={Astro.props.data.image.altText}
+          inferSize={true}
+        />
+      </a>
+    </div>
+  </Wrapper>
+</div>

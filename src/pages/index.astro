@@ -7,6 +7,7 @@ import SliderComponent from "../components/Home/SliderComponent.jsx";
 import BlockTwo from "../components/Home/BlockTwo.astro";
 import BlockThree from "../components/Home/BlockThree.astro";
 import BlockFour from "../components/Home/BlockFour.astro";
+import Mailchimp from "../components/Home/Mailchimp.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -70,6 +71,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 									sourceUrl
 								}
 							}
+						}
+
+						mailchimpComponent {
+							link
+							image {
+								altText
+								sourceUrl
+							}	
 						}
 
 						# START Hero section #
@@ -150,6 +159,7 @@ const {
     testimonials={testimonials.nodes}
   />
   <SliderComponent client:only="react" data={page.homePage.sliderComponent} />
+  <Mailchimp data={page.homePage.mailchimpComponent} />
   <BlockTwo data={page.homePage.blockTwoComponent} />
   <BlockThree data={page.homePage.blockThreeComponent} />
   <!-- <BlockFour data={page.homePage.blockFourComponent} /> -->
