@@ -4,6 +4,7 @@ import HeroIntro from "../../components/Workspaces/HeroIntro.astro";
 import BlockOne from "../../components/Workspaces/BlockOne.astro";
 import BlockTwo from "../../components/Workspaces/BlockTwo.astro";
 import BlockThree from "../../components/Workspaces/BlockThree.astro";
+import Mailchimp from "../../components/Home/Mailchimp.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -82,6 +83,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 								}
 							}
 						}
+
+						mailchimpComponent {
+							link
+							image {
+								altText
+								sourceUrl
+							}	
+						}
 					}
 				}
 			}
@@ -103,4 +112,5 @@ const {
   <BlockOne data={page.workspacesPage.blockOneComponent} />
   <BlockTwo data={page.workspacesPage.blockTwoComponent} />
   <BlockThree data={page.workspacesPage.blockThreeComponent} />
+  <Mailchimp data={page.workspacesPage.mailchimpComponent} />
 </Layout>
